@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 namespace AlfieCodes
 {
     using AlfieCodes.Data;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
     public class Startup
@@ -27,8 +29,17 @@ namespace AlfieCodes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<BlogDbContext>( options => { options.UseSqlServer( Configuration.GetConnectionString( "AlfieCodesDb" ) ); });
+            services.AddHttpContextAccessor();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => options.LoginPath = "/Login");
 
-            services.AddRazorPages();
+            services.AddRazorPages()
+                    .AddRazorPagesOptions( options =>
+                                           {
+                                               options.Conventions.AuthorizeFolder( "/" );
+                                               options.Conventions.AllowAnonymousToPage( "/Index" );
+                                               options.Conventions.AllowAnonymousToPage( "/Login" );
+                                           }).SetCompatibilityVersion( CompatibilityVersion.Latest );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +60,8 @@ namespace AlfieCodes
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

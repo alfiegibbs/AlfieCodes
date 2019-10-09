@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AlfieCodes.Pages
 {
+    using System.Security.Claims;
     using AlfieCodes.Data;
     using AlfieCodes.Models;
     using BCrypt.Net;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Http;
 
     public class LoginModel : PageModel
     {
@@ -37,14 +41,23 @@ namespace AlfieCodes.Pages
             return encryptedPassword;
         }
 
-        public RedirectResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if ( VerifyInformation() == false )
             {
                 return Redirect( "/Fail" );
             }
 
-            return Redirect( "/Success" );
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, LoginRequest.Email),
+            };
+
+            var claimsIdentity = new ClaimsIdentity( claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync( CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity) );
+
+            return RedirectToPage( "/Success" );
         }
 
         public void OnGet() { }
