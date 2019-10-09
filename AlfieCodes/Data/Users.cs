@@ -1,7 +1,6 @@
 ﻿namespace AlfieCodes.Data
 {
     using System;
-    using Microsoft.AspNetCore.Identity;
 
     public class Users
     {
