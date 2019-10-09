@@ -1,0 +1,12 @@
+﻿@page
+@using System.Security.Claims;
+@model AlfieCodes.Areas.Administration.Pages.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = $"../Shared/_AdminLayout";
+    var username = User.Claims.FirstOrDefault( x => x.Type == ClaimTypes.Name )?.Value;
+}
+
+<h1>Administration Zone</h1>
+<span>Welcome back @username!</span>
+

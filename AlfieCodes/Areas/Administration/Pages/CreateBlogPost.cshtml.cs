@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace AlfieCodes.Pages
+﻿namespace AlfieCodes.Areas.Administration.Pages
 {
+    using System;
+    using System.Threading.Tasks;
     using AlfieCodes.Data;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
 
     public class CreateBlogPostModel : PageModel
     {
@@ -26,22 +23,22 @@ namespace AlfieCodes.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return Page();
             }
 
-            _blogDbContext.BlogPosts.Add(new BlogPost 
+            _blogDbContext.BlogPosts.Add( new BlogPost
             {
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
                 Body = BlogPost.Body
-            });
+            } );
             await _blogDbContext.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage( "/Index" );
         }
     }
 }

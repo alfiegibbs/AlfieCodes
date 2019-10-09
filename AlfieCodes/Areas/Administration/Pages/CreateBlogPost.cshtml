@@ -1,7 +1,8 @@
 ﻿@page
-@model AlfieCodes.Pages.CreateBlogPostModel
+@model AlfieCodes.Areas.Administration.Pages.CreateBlogPostModel
 @{
     ViewData["Title"] = "CreateBlogPost";
+    Layout = "_AdminLayout";
 }
 
     <form method="post">
@@ -15,7 +16,7 @@
         <div class="form-group" >
             <label>
                 Body
-                <input asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="titleHelp" placeholder="Title"/>
+                <input asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="8" placeholder="Title"/>
             </label>
             <small id ="bodyHelp" class="form-text text-muted">Body of the blog post</small>
         </div>

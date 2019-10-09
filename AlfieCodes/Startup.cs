@@ -37,6 +37,7 @@ namespace AlfieCodes
                     .AddRazorPagesOptions( options =>
                                            {
                                                options.Conventions.AuthorizeFolder( "/" );
+                                               options.Conventions.AuthorizeAreaFolder( "Administration", "/" );
                                                options.Conventions.AllowAnonymousToPage( "/Index" );
                                                options.Conventions.AllowAnonymousToPage( "/Login" );
                                            }).SetCompatibilityVersion( CompatibilityVersion.Latest );
