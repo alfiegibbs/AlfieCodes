@@ -24,10 +24,20 @@
                         <a class="nav-link text-light" asp-page="/CreateBlogPost">Create Blog Post</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <a class="nav-link text-light" asp-area="" asp-page="/Login">Login</a>
-                    <a class=" nav-link text-light" asp-area="" asp-page="/Register">Register</a>
-                </form>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <form class="form-inline my-2 my-lg-0">
+                        <a class="nav-link text-light" asp-area="" asp-page="/Login">Login</a>
+                        <a class=" nav-link text-light" asp-area="" asp-page="/Register">Register</a>
+                    </form>
+                }
+                else
+                {
+                    <form class="form-inline my-2 my-lg-0">
+                        <a class=" nav-link text-light" asp-area="" asp-page="/Logout">Logout</a>
+                    </form>
+                }
+
             </div>
         </nav>
     </header>

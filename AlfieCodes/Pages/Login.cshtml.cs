@@ -29,28 +29,38 @@ namespace AlfieCodes.Pages
 
         private bool VerifyInformation()
         {
-            var user = _blogDbContext.Users.FirstOrDefault( obj => obj.Email == LoginRequest.Email );
+            var userEmail = _blogDbContext.Users.FirstOrDefault( obj => obj.Email == LoginRequest.Email );
 
-            if ( user == null )
+            if ( userEmail == null )
             {
                 return false;
             }
 
-            bool encryptedPassword = BCrypt.Verify( LoginRequest.Password, user.Password );
+            bool encryptedPassword = BCrypt.Verify( LoginRequest.Password, userEmail.Password );
             
             return encryptedPassword;
         }
 
         public async Task<IActionResult> OnPost()
         {
-            if ( VerifyInformation() == false )
+            var user = _blogDbContext.Users.FirstOrDefault( obj => obj.Email == LoginRequest.Email );
+
+            if ( user == null )
+            {
+                return Redirect( "/Fail" );;
+            }
+
+            bool encryptedPassword = BCrypt.Verify( LoginRequest.Password, user.Password );
+
+            if ( !encryptedPassword )
             {
                 return Redirect( "/Fail" );
             }
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, LoginRequest.Email),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.Username)
             };
 
             var claimsIdentity = new ClaimsIdentity( claims, CookieAuthenticationDefaults.AuthenticationScheme);

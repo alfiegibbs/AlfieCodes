@@ -56,14 +56,11 @@ namespace AlfieCodes
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
+            app.UseHttpsRedirection()
+               .UseStaticFiles()
+               .UseRouting()
+               .UseAuthentication()
+               .UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
