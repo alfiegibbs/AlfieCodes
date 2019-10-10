@@ -1,4 +1,5 @@
 ﻿@page
+@using AlfieCodes.Infastructure
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -7,7 +8,7 @@
 @foreach ( var blogPost in Model.BlogPosts )
 {
     <div>
-        <h1>@blogPost.Title</h1>
+        <a asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString("N"))">@blogPost.Title</a>
         <div>@blogPost.Body</div>
     </div>
     <br/>

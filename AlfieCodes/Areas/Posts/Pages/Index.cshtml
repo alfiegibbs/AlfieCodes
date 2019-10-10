@@ -1,0 +1,15 @@
+﻿@page "{title}-{postId:guid}"
+@using AlfieCodes.Data
+@using AlfieCodes.Models
+@model AlfieCodes.Areas.Posts.Pages.IndexModel
+
+@functions {
+}
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div>
+    <h1>@Model.BlogPost.Title</h1>
+    <div>@Model.BlogPost.Body</div>
+</div>

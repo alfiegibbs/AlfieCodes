@@ -27,20 +27,6 @@ namespace AlfieCodes.Pages
         [ BindProperty ]
         public LoginRequest LoginRequest { get; set; }
 
-        private bool VerifyInformation()
-        {
-            var userEmail = _blogDbContext.Users.FirstOrDefault( obj => obj.Email == LoginRequest.Email );
-
-            if ( userEmail == null )
-            {
-                return false;
-            }
-
-            bool encryptedPassword = BCrypt.Verify( LoginRequest.Password, userEmail.Password );
-            
-            return encryptedPassword;
-        }
-
         public async Task<IActionResult> OnPost()
         {
             var user = _blogDbContext.Users.FirstOrDefault( obj => obj.Email == LoginRequest.Email );

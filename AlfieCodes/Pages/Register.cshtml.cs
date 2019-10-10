@@ -3,6 +3,7 @@
     using AlfieCodes.Data;
     using BCrypt.Net;
     using System.Threading.Tasks;
+    using AlfieCodes.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -16,7 +17,7 @@
         }
 
         [ BindProperty ]
-        public Users Users { get; set; }
+        public RegisterRequest RegisterRequest { get; set; }
 
         public IActionResult OnGet()
         {
@@ -38,9 +39,9 @@
 
             _blogDbContext.Users.Add( new Users
             {
-                Username = Users.Username,
-                Email = Users.Email,
-                Password = HashPassword( Users.Password )
+                Username = RegisterRequest.Username,
+                Email = RegisterRequest.Email,
+                Password = HashPassword( RegisterRequest.Password )
             } );
             await _blogDbContext.SaveChangesAsync();
             return RedirectToPage( "./Index" );

@@ -40,6 +40,8 @@ namespace AlfieCodes
                                                options.Conventions.AuthorizeAreaFolder( "Administration", "/" );
                                                options.Conventions.AllowAnonymousToPage( "/Index" );
                                                options.Conventions.AllowAnonymousToPage( "/Login" );
+                                               options.Conventions.AllowAnonymousToPage( "/Register" );
+                                               options.Conventions.AllowAnonymousToPage( "/Fail" );
                                            }).SetCompatibilityVersion( CompatibilityVersion.Latest );
         }
 
