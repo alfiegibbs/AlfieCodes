@@ -5,7 +5,7 @@
     Layout = "_AdminLayout";
 }
 
-    <form method="post">
+    <form method="post" style="text-align: center;">
         <div class="form-group">
             <label>
                 Title
@@ -16,7 +16,7 @@
         <div class="form-group" >
             <label>
                 Body
-                <input asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="8" placeholder="Title"/>
+                <textarea asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="titleBody" placeholder="Body"></textarea>
             </label>
             <small id ="bodyHelp" class="form-text text-muted">Body of the blog post</small>
         </div>

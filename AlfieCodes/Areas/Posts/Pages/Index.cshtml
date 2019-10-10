@@ -6,10 +6,12 @@
 @functions {
 }
 @{
+    var MarkupBody = @Model.BlogPost.Body.Replace("<br/>", Environment.NewLine);
     Layout = "Shared/_Layout";
 }
 
 <div>
     <h1>@Model.BlogPost.Title</h1>
-    <div>@Model.BlogPost.Body</div>
+    <div>@MarkupBody</div>
+    <small>@Model.BlogPost.CreatedAt</small>
 </div>

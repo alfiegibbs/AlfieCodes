@@ -26,7 +26,10 @@ namespace AlfieCodes.Pages
 
         public void OnGet()
         {
-            BlogPosts = _blogDbContext.BlogPosts.ToList();
+            // Sticks newest blog post on top
+            var postList = _blogDbContext.BlogPosts.ToList();
+            postList.Reverse();
+            BlogPosts = postList;
         }
     }
 }

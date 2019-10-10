@@ -23,6 +23,13 @@
             return Page();
         }
 
+        public string MarkupStringToDataBase(string markup)
+        {
+            string replace = markup.Replace( Environment.NewLine, "<br/>");
+
+            return replace;
+        }
+
         public async Task<IActionResult> OnPost()
         {
             if ( !ModelState.IsValid )
@@ -34,7 +41,7 @@
             {
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
-                Body = BlogPost.Body
+                Body = MarkupStringToDataBase( BlogPost.Body )
             } );
             await _blogDbContext.SaveChangesAsync();
 
