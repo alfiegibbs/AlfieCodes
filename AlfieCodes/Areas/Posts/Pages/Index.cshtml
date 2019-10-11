@@ -1,17 +1,25 @@
 ﻿@page "{title}-{postId:guid}"
-@using AlfieCodes.Data
-@using AlfieCodes.Models
-@model AlfieCodes.Areas.Posts.Pages.IndexModel
+@using HeyRed.MarkdownSharp;
 
-@functions {
-}
+@model AlfieCodes.Areas.Posts.Pages.IndexModel
 @{
-    var MarkupBody = @Model.BlogPost.Body.Replace("<br/>", Environment.NewLine);
     Layout = "Shared/_Layout";
+    ViewData[ "Title" ] = @Model.BlogPost.Title;
+
+    var options = new MarkdownOptions
+    {
+        AutoHyperlink = true,
+        AutoNewLines = true,
+        LinkEmails = true,
+        QuoteSingleLine = true,
+        StrictBoldItalic = true
+    };
+
+    var mark = new Markdown(options);
 }
 
 <div>
     <h1>@Model.BlogPost.Title</h1>
-    <div>@MarkupBody</div>
+    <div>@Html.Raw( mark.Transform( Model.BlogPost.Body ) )</div>
     <small>@Model.BlogPost.CreatedAt</small>
 </div>

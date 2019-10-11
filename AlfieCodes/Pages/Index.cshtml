@@ -9,7 +9,7 @@
 {
     <div style="text-align: center;">
         <a asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString("N"))">@blogPost.Title</a>
-        <div>@blogPost.Body</div>
+        <div>@blogPost.Summary</div>
         <small>@blogPost.CreatedAt</small>
     </div>
     <br/>

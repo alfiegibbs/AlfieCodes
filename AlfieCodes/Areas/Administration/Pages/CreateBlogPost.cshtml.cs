@@ -23,13 +23,6 @@
             return Page();
         }
 
-        public string MarkupStringToDataBase(string markup)
-        {
-            string replace = markup.Replace( Environment.NewLine, "<br/>");
-
-            return replace;
-        }
-
         public async Task<IActionResult> OnPost()
         {
             if ( !ModelState.IsValid )
@@ -41,8 +34,10 @@
             {
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
-                Body = MarkupStringToDataBase( BlogPost.Body )
+                Body = BlogPost.Body,
+                Summary = BlogPost.Summary
             } );
+
             await _blogDbContext.SaveChangesAsync();
 
             return RedirectToPage( "/Index" );
