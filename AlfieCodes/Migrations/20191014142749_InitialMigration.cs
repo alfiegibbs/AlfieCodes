@@ -3,22 +3,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AlfieCodes.Migrations
 {
-    public partial class UsersAddedV2 : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_BlogPost",
-                table: "BlogPost");
-
-            migrationBuilder.RenameTable(
-                name: "BlogPost",
-                newName: "BlogPosts");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_BlogPosts",
-                table: "BlogPosts",
-                column: "Id");
+            migrationBuilder.CreateTable(
+                name: "BlogPosts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    Summary = table.Column<string>(nullable: true),
+                    Tags = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogPosts", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Users",
@@ -38,20 +41,10 @@ namespace AlfieCodes.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BlogPosts");
+
+            migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_BlogPosts",
-                table: "BlogPosts");
-
-            migrationBuilder.RenameTable(
-                name: "BlogPosts",
-                newName: "BlogPost");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_BlogPost",
-                table: "BlogPost",
-                column: "Id");
         }
     }
 }

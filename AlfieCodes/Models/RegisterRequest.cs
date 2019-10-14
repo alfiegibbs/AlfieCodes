@@ -12,7 +12,7 @@
         [Required]
         public string Email { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+        [RegularExpression(@"^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$;%&*]{8,}$", ErrorMessage = "Please enter a valid password. A valid password has a minimum of 8 characters, can only contain, letters, numbers and the following special characters: !@#$;%&*")]
         [Required]
         [StringLength(60, MinimumLength = 8)]
         public string Password { get; set; }

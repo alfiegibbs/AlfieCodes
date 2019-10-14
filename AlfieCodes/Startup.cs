@@ -18,6 +18,7 @@ namespace AlfieCodes
 
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +30,7 @@ namespace AlfieCodes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<BlogDbContext>( options => { options.UseSqlServer( Configuration.GetConnectionString( "AlfieCodesDb" ) ); });
+            
             services.AddHttpContextAccessor();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => options.LoginPath = "/Login");
@@ -43,6 +45,8 @@ namespace AlfieCodes
                                                options.Conventions.AllowAnonymousToPage( "/Register" );
                                                options.Conventions.AllowAnonymousToPage( "/Fail" );
                                            }).SetCompatibilityVersion( CompatibilityVersion.Latest );
+
+            services.AddHostedService<StartupActions>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +68,7 @@ namespace AlfieCodes
                .UseRouting()
                .UseAuthentication()
                .UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
