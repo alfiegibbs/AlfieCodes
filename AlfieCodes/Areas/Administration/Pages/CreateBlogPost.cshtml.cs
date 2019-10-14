@@ -35,7 +35,8 @@
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
                 Body = BlogPost.Body,
-                Summary = BlogPost.Summary
+                Summary = BlogPost.Summary,
+                Tags = BlogPost.Tags
             } );
 
             await _blogDbContext.SaveChangesAsync();

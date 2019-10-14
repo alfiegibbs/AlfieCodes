@@ -6,6 +6,8 @@
     Layout = "Shared/_Layout";
     ViewData[ "Title" ] = @Model.BlogPost.Title;
 
+    string[] tags = @Model.BlogPost.Tags.Split( " " );
+
     var options = new MarkdownOptions
     {
         AutoHyperlink = true,
@@ -22,4 +24,13 @@
     <h1>@Model.BlogPost.Title</h1>
     <div>@Html.Raw( mark.Transform( Model.BlogPost.Body ) )</div>
     <small>@Model.BlogPost.CreatedAt</small>
+    
+    @foreach ( var tag in tags )
+    {
+        <br/>
+        <span style="background-color: gainsboro; padding: 5px; margin: 10px;">
+            @tag
+        </span>
+        <br/>
+    }
 </div>
