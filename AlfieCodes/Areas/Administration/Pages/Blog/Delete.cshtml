@@ -1,0 +1,19 @@
+﻿@page
+@using AlfieCodes.Infastructure
+@model AlfieCodes.Areas.Administration.Pages.Blog.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "Shared/_AdminLayout";
+}
+
+<h1>Delete</h1>
+
+@foreach (var blogPost in Model.BlogPosts)
+{
+    <div style="text-align: center;">
+        <a asp-area="Administration" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString("N"))">@blogPost.Title</a>
+        <div>@blogPost.Summary</div>
+        <small>@blogPost.CreatedAt</small>
+    </div>
+    <br />
+}

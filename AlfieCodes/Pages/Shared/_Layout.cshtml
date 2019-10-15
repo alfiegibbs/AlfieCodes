@@ -1,64 +1,71 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AlfieCodes</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-page="/Index">AlfieCodes</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+﻿@using AlfieCodes.Infastructure
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>@ViewData[ "Title" ] - AlfieCodes</title>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <nav class="bg-dark navbar navbar-dark navbar-expand-lg" >
+                <a asp-page="/Index" class="navbar-brand" >AlfieCodes</a>
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button" >
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-page="/Index">Home</a>
-                    </li>
-                </ul>
-                @if (!User.Identity.IsAuthenticated)
-                {
-                    <form class="form-inline my-2 my-lg-0">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Login">Login</a>
-                        <a class=" nav-link text-light" asp-area="" asp-page="/Register">Register</a>
-                    </form>
-                }
-                else
-                {
-                    <form class="form-inline my-2 my-lg-0">
-                        <a class=" nav-link text-light" asp-area="Administration" asp-page="/Index">Admin Area</a>
-                    </form>
-                    <form class="form-inline my-2 my-lg-0">
-                        <a class=" nav-link text-light" asp-area="" asp-page="/Logout">Logout</a>
-                    </form>
-                }
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                    <ul class="mr-auto navbar-nav" >
+                        <li class="nav-item" >
+                            <a asp-page="/Index" class="nav-link text-light" >Home</a>
+                        </li>
+                    </ul>
+                    @if ( !User.Identity.IsAuthenticated )
+                    {
+                        <form class="form-inline my-2 my-lg-0" >
+                            <a asp-area="" asp-page="/Login" class="nav-link text-light" >Login</a>
+                            <a asp-area="" asp-page="/Register" class=" nav-link text-light" >Register</a>
+                        </form>
+                    }
+                    else if ( User.Identity.Name == Roles.Admin)
+                    {
+                        <form class="form-inline my-2 my-lg-0" >
+                            <a asp-area="Administration" asp-page="/Index" class=" nav-link text-light" >Admin Area</a>
+                        </form>
+                        <form class="form-inline my-2 my-lg-0" >
+                            <a asp-area="" asp-page="/Logout" class=" nav-link text-light" >Logout</a>
+                        </form>
+                    }
+                    else
+                    {
+                        <form class="form-inline my-2 my-lg-0" >
+                            <a asp-area="" asp-page="/Logout" class=" nav-link text-light" >Logout</a>
+                        </form>
+                    }
 
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3" >
-            <br />
-            <br />
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted bg-dark">
-        <div class="container">
-            &copy; 2019 - AlfieCodes - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+            </nav>
+        </header>
+        <div class="container" >
+            <main class="pb-3" role="main" >
+                <br />
+                <br />
+                @RenderBody()
+            </main>
         </div>
-    </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <footer class="bg-dark border-top footer text-muted" >
+            <div class="container" >
+                &copy; 2019 - AlfieCodes
+            </div>
+        </footer>
 
-    @RenderSection("Scripts", required: false)
-</body>
+        <script src="~/lib/jquery/dist/jquery.min.js" ></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" ></script>
+        <script asp-append-version="true" src="~/js/site.js" ></script>
+
+        @RenderSection( "Scripts", required : false )
+    </body>
 </html>
