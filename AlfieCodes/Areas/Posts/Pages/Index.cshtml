@@ -25,12 +25,14 @@
     <div>@Html.Raw( mark.Transform( Model.BlogPost.Body ) )</div>
     <small>@Model.BlogPost.CreatedAt</small>
     
-    @foreach ( var tag in tags )
-    {
-        <br/>
-        <span style="background-color: gainsboro; padding: 5px; margin: 10px;">
-            @tag
-        </span>
-        <br/>
-    }
+    <div class="tagCloud" style="display: inline; padding-top: 50px;" >
+        <br />
+        @foreach ( var tag in tags )
+        {
+            <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;" >
+                @tag
+            </span>
+        }
+    </div>
+
 </div>

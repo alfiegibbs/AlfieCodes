@@ -1,0 +1,39 @@
+﻿@page
+@model AlfieCodes.Areas.Administration.Pages.CreateBlogPostModel
+@{
+    ViewData["Title"] = "Create Blog Post";
+    Layout = "_AdminLayout";
+}
+
+<form method="post" style="text-align: center;">
+        <div class="form-group">
+            <label>
+                Title
+                <input asp-for="BlogPost.Title" type="text" class="form-control" aria-describedby="titleHelp" placeholder="Title" />
+            </label>
+            <small id="titleHelp" class="form-text text-muted">Title of the blog post</small>
+        </div>
+        
+        <div class="form-group">
+            <label>
+                Summary
+                <input asp-for="BlogPost.Summary" type="text" class="form-control" aria-describedby="summaryHelp" placeholder="Summary" />
+            </label>
+            <small id="summaryHelp" class="form-text text-muted">Brief summary of your blog</small>
+        </div>
+        <div class="form-group" >
+            <label>
+                Body
+                <textarea asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="titleBody" placeholder="Body"></textarea>
+            </label>
+            <small id ="bodyHelp" class="form-text text-muted">Body of the blog post</small>
+        </div>
+        <div class="form-group">
+            <label>
+                Tags
+                <input asp-for="BlogPost.Tags" type="text" class="form-control" aria-describedby="tagsHelp" placeholder="Tags" />
+            </label>
+            <small id="tagsHelp" class="form-text text-muted">Tags of your blog post</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>

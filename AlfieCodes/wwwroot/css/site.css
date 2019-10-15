@@ -69,3 +69,23 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.box {
+    display: block;
+    width: 500px;
+    height: 200px;
+    margin: 1em auto;
+    background-color: #404040;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    border: 0px solid white;
+}
+
+.box span {
+    font-size: 40px;
+}
+
+.box svg {
+    font-size: 60px;
+}

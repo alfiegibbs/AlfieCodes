@@ -1,0 +1,26 @@
+﻿@page
+@model AlfieCodes.Areas.Administration.Pages.Blog.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Shared/_AdminLayout";
+}
+
+<h3>Administration Area > Blog</h3>
+
+<a asp-page="/Blog/Create" >
+    <div class="box" >
+        <span style="position: relative; top: 35%;">Create Blog Post</span>
+    </div>
+</a>
+
+<a asp-page="Edit" >
+    <div class="box">
+        <span style="position: relative; top: 35%;">Edit a Blog Post</span>
+    </div>
+</a>
+
+<a asp-page="Delete">
+    <div class="box">
+        <span style="position: relative; top: 35%;">Delete a Blog Post</span>
+    </div>
+</a>

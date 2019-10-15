@@ -37,7 +37,7 @@
                 return Page();
             }
 
-            _blogDbContext.Users.Add( new Users
+            _blogDbContext.Users.Add( new Data.Users
             {
                 Username = RegisterRequest.Username,
                 Email = RegisterRequest.Email,
