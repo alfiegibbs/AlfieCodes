@@ -1,26 +1,32 @@
 ﻿@page
 @model AlfieCodes.Areas.Administration.Pages.Blog.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Blog";
     Layout = "Shared/_AdminLayout";
 }
 
 <h3>Administration Area > Blog</h3>
 
-<a asp-page="/Blog/Create" >
-    <div class="box" >
-        <span style="position: relative; top: 35%;">Create Blog Post</span>
-    </div>
-</a>
-
-<a asp-page="Edit" >
-    <div class="box">
-        <span style="position: relative; top: 35%;">Edit a Blog Post</span>
-    </div>
-</a>
-
-<a asp-page="/Blog/Delete">
-    <div class="box">
-        <span style="position: relative; top: 35%;">Delete a Blog Post</span>
-    </div>
-</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Date Created</th>
+        <th>Tags</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+@foreach ( var blogpost in Model.BlogPosts )
+{
+<tr>
+    <td>@blogpost.Id</td>
+    <td>@blogpost.Title</td>
+    <td>@blogpost.Summary</td>
+    <td>@blogpost.CreatedAt</td>
+    <td>@blogpost.Tags</td>
+    <td><a href="#"><i style="text-align: center;" class="fas fa-pencil-alt"></i></a></td>
+    <td><a href="#"><i style="text-align: center;" class="fa fa-trash"></i></a></td>
+</tr>
+}
+</table>
