@@ -7,7 +7,15 @@
     Layout = "Shared/_Layout";
     ViewData[ "Title" ] = @Model.BlogPost.Title;
 
-    string[] tags = @Model.BlogPost.Tags.Split( " " );
+//    string[] tags = new[] { "" };
+//
+//    if (@Model.BlogPost.Tags == null)
+//    {
+//        string[] tags = new string[]{""};
+//    }
+    
+    string[] tags = @Model.BlogPost.Tags?.Split( " " );
+
 
     var options = new MarkdownOptions
     {
@@ -28,12 +36,16 @@
     
     <div class="tagCloud" style="display: inline; padding-top: 50px;" >
         <br />
-        @foreach ( var tag in tags )
+        @if ( tags != null )
         {
-            <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;" >
-                @tag
-            </span>
+            @foreach ( var tag in tags )
+            {
+                <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;" >
+                    @tag
+                </span>
+            }
         }
+
     </div>
 
 </div>
