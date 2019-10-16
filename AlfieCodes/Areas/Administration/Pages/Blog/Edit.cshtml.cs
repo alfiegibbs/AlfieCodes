@@ -41,9 +41,16 @@
 
             await using ( _blogDbContext )
             {
-                var blogPost = _blogDbContext.BlogPosts.Find( Url );
+                var blogPost = _blogDbContext.BlogPosts.Find( PostId );
 
-                
+                blogPost.Body = BlogPost.Body;
+                blogPost.ReadTime = BlogPost.ReadTime;
+                blogPost.Summary = BlogPost.Summary;
+                blogPost.Tags = BlogPost.Tags;
+                blogPost.Title = BlogPost.Title;
+
+                _blogDbContext.BlogPosts.Update( blogPost );
+                _blogDbContext.SaveChanges();
             }
 
 //            _blogDbContext.BlogPosts.Add( new BlogPost
