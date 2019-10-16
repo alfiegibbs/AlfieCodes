@@ -1,5 +1,6 @@
 ﻿@page "{title}-{postId:guid}"
 @using HeyRed.MarkdownSharp;
+@using Humanizer
 
 @model AlfieCodes.Areas.Posts.Pages.IndexModel
 @{
@@ -23,7 +24,7 @@
 <div>
     <h1>@Model.BlogPost.Title</h1>
     <div>@Html.Raw( mark.Transform( Model.BlogPost.Body ) )</div>
-    <small>@Model.BlogPost.CreatedAt</small>
+    <small>@Model.BlogPost.CreatedAt.Humanize()</small>
     
     <div class="tagCloud" style="display: inline; padding-top: 50px;" >
         <br />
