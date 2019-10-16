@@ -1,0 +1,22 @@
+﻿@page "{postId:guid}"
+@model AlfieCodes.Areas.Administration.Pages.Blog.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "Shared/_AdminLayout";
+}
+
+<h1>Delete</h1>
+
+<form asp-action="" >
+    <div class="card text-center">
+        <div class="card-header bg-danger">
+            Delete?
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Are you sure?</h5>
+            <p class="card-text">Are you sure you want to delete the blog post, </p>
+            <input class="btn btn-primary bg-danger" type="submit" value="Yes" />
+            <a asp-area="" asp-page="/Index" class="btn btn-primary">No</a>
+        </div>
+    </div>
+</form>

@@ -53,15 +53,6 @@
                 _blogDbContext.SaveChanges();
             }
 
-//            _blogDbContext.BlogPosts.Add( new BlogPost
-//            {
-//                CreatedAt = DateTime.Now,
-//                Title = BlogPost.Title,
-//                Body = BlogPost.Body,
-//                Summary = BlogPost.Summary,
-//                Tags = BlogPost.Tags
-//            } );
-
             await _blogDbContext.SaveChangesAsync();
 
             return RedirectToPage( "/Index" );
