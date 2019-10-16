@@ -7,13 +7,6 @@
     Layout = "Shared/_Layout";
     ViewData[ "Title" ] = @Model.BlogPost.Title;
 
-//    string[] tags = new[] { "" };
-//
-//    if (@Model.BlogPost.Tags == null)
-//    {
-//        string[] tags = new string[]{""};
-//    }
-    
     string[] tags = @Model.BlogPost.Tags?.Split( " " );
 
 

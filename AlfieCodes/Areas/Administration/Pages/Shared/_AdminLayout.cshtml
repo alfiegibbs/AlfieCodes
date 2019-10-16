@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-page="/Index"  asp-area="">Home</a>
+                        <a class="nav-link text-light" asp-page="/Index" asp-area="">Home</a>
                     </li>
                 </ul>
                 @if (!User.Identity.IsAuthenticated)
@@ -32,7 +32,7 @@
                 else
                 {
                     <form class="form-inline my-2 my-lg-0" >
-                        <a class="nav-link text-light" asp-area="Administration" asp-page="Blog/CreateBlogPost">Create Blog Post</a>
+                        <a class="nav-link text-light" asp-area="Administration" asp-page="Blog/Create">Create Blog Post</a>
                     </form>
                     <form class="form-inline my-2 my-lg-0">
                         <a class=" nav-link text-light" asp-area="" asp-page="/Index">Logout</a>

@@ -10,5 +10,6 @@
         public string Body { get; set; }
         public string Summary { get; set; }
         public string Tags { get; set; }
+        public int ReadTime { get; set; }
     }
 }
