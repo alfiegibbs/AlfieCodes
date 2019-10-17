@@ -26,16 +26,23 @@
         <div class="form-group">
             <label>
                 Body
-                <textarea asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="titleBody" placeholder="Body"></textarea>
+                <textarea asp-for="BlogPost.Body" type="text" class="form-control" aria-describedby="bodyHelp" placeholder="Body"></textarea>
             </label>
             <small id="bodyHelp" class="form-text text-muted">Body of the blog post</small>
         </div>
-        <div class="form-group" >
+        <div class="form-group">
             <label>
                 Tags
-                <input asp-for="BlogPost.Tags" type="text" class="form-control" aria-describedby="titleBody" placeholder="Tags"></input>
+                <input asp-for="BlogPost.Tags" type="text" class="form-control" aria-describedby="tagHelp" placeholder="Tags" />
             </label>
-            <small id ="tagsHelp" class="form-text text-muted">Tags of the blog post</small>
+            <small id="tagsHelp" class="form-text text-muted">Tags of the blog post</small>
+        </div>
+        <div class="form-group">
+            <label>
+                Time to Read
+                <input asp-for="BlogPost.ReadTime" type="text" class="form-control" aria-describedby="readtimeHelp" placeholder="Time to read" />
+            </label>
+            <small id="readTimeHelp" class="form-text text-muted">How long it'll take to read.</small>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
