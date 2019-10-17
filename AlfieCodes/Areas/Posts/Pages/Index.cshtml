@@ -21,24 +21,24 @@
 
     var mark = new Markdown(options);
 }
-
 <div>
     <h1>@Model.BlogPost.Title</h1>
-    <div>@Html.Raw( mark.Transform( Model.BlogPost.Body ) )</div>
+    <div>@Html.Raw(mark.Transform(Model.BlogPost.Body))</div>
     <small>@Model.BlogPost.CreatedAt.Humanize()</small>
-    
-    <div class="tagCloud" style="display: inline; padding-top: 50px;" >
+
+    <div class="tagCloud" style="display: inline; padding-top: 50px;">
         <br />
-        @if ( tags != null )
+        @if (tags != null)
         {
-            @foreach ( var tag in tags )
+            @foreach (var tag in tags)
             {
-                <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;" >
+                <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
                     @tag
                 </span>
             }
         }
-
     </div>
-
 </div>
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Check out ,'@Model.BlogPost.Title'!" data-lang="en" data-show-count="false">Tweet</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
