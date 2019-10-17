@@ -36,7 +36,8 @@
                 Title = BlogPost.Title,
                 Body = BlogPost.Body,
                 Summary = BlogPost.Summary,
-                Tags = BlogPost.Tags
+                Tags = BlogPost.Tags,
+                ReadTime = BlogPost.ReadTime
             } );
 
             await _blogDbContext.SaveChangesAsync();

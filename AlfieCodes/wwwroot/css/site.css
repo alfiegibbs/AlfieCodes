@@ -81,7 +81,6 @@ body {
 .box svg { font-size: 60px; }
 
 table, th, td {
-    border: 1px solid black;
     padding: 5px;
     border-collapse: collapse;
     margin: 0 auto;
@@ -92,4 +91,12 @@ table { width: 100%; }
 
 .twitter-share-button {
     margin-top: 50px;
+    margin-left: 7px;
 }
+
+@media only screen and (max-width: 600px) {
+    .box {
+        width: 80%;
+    }
+}
+
