@@ -7,28 +7,30 @@
 
 <h3>Administration Area > Blog</h3>
 
-<table class="table">
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Summary</th>
-        <th scope="col">Date Created</th>
-        <th scope="col">Tags</th>
-        <th scope="col">Time to Read</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-    </tr>
-@foreach ( var blogpost in Model.BlogPosts )
-{
-    <tr>
-        <td>@blogpost.Id</td>
-        <td>@blogpost.Title</td>
-        <td>@blogpost.Summary</td>
-        <td>@blogpost.CreatedAt</td>
-        <td>@blogpost.Tags</td>
-        <td>@blogpost.ReadTime</td>
-        <td><a asp-area="Administration" asp-page="/Blog/Edit" asp-route-postId="@blogpost.Id"><i style="text-align: center;" class="fas fa-pencil-alt"></i></a></td>
-        <td><a asp-area="Administration" asp-page="/Blog/Delete" asp-route-postId="@blogpost.Id"><i style="text-align: center;" class="fa fa-trash"></i></a></td>
-    </tr>
-}
+<table class="table" >
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Summary</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Time to Read</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    @foreach ( var blogpost in Model.BlogPosts )
+    {
+        <tr>
+            <td>@blogpost.Id</td>
+            <td>@blogpost.Title</td>
+            <td>@blogpost.Summary</td>
+            <td>@blogpost.CreatedAt</td>
+            <td>@blogpost.Tags</td>
+            <td>@blogpost.ReadTime</td>
+            <td><a asp-area="Administration" asp-page="/Blog/Edit" asp-route-postId="@blogpost.Id" ><i style="text-align: center;" class="fas fa-pencil-alt" ></i></a></td>
+            <td><a asp-area="Administration" asp-page="/Blog/Delete" asp-route-postId="@blogpost.Id" ><i style="text-align: center;" class="fa fa-trash" ></i></a></td>
+        </tr>
+    }
 </table>

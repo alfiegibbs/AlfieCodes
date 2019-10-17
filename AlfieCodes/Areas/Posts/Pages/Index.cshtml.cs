@@ -1,20 +1,17 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace AlfieCodes.Areas.Posts.Pages
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using AlfieCodes.Data;
-    using Microsoft.EntityFrameworkCore.Internal;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
 
     public class IndexModel : PageModel
     {
         private readonly BlogDbContext _blogDbContext;
         private readonly ILogger<AlfieCodes.Pages.IndexModel> _logger;
-        
+
         [BindProperty]
         public string Title { get; set; }
         [BindProperty]

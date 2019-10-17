@@ -100,3 +100,19 @@ table { width: 100%; }
     }
 }
 
+code {
+    display: inline-block;
+    padding: 10px;
+    border: 0px solid black;
+    border-radius: 5px;
+    background-color: #253036;
+}
+
+.form-control {
+    width: 100%;
+    display: block;
+}
+
+.cbp {
+    width: 60vw;
+}
