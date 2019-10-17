@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace AlfieCodes.Areas.Administration.Pages.Blog
+﻿namespace AlfieCodes.Areas.Administration.Pages.Blog
 {
     using AlfieCodes.Data;
-
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
 
     public class DeleteModel : PageModel
     {
@@ -21,7 +18,8 @@ namespace AlfieCodes.Areas.Administration.Pages.Blog
 
         [ BindProperty ]
         private BlogPost BlogPost { get; set; }
-        private Guid PostId { get; set; }
+        [BindProperty]
+        public Guid PostId { get; set; }
 
         public IActionResult OnGet(Guid postId)
         {
@@ -39,13 +37,15 @@ namespace AlfieCodes.Areas.Administration.Pages.Blog
 
             await using ( _blogDbContext )
             {
-                var blogPost = _blogDbContext.BlogPosts.Where( x => x.Id == PostId );
+                var blogPost = _blogDbContext.BlogPosts.FirstOrDefault( x => x.Id == PostId );
 
-                foreach ( var post in blogPost ) _blogDbContext.Remove( post );
-                _blogDbContext.SaveChanges();
+                if ( blogPost != null )
+                {
+                    _blogDbContext.BlogPosts.RemoveRange( blogPost );
+                    await _blogDbContext.SaveChangesAsync();
+                }
             }
 
-            await _blogDbContext.SaveChangesAsync();
 
             return RedirectToPage( "/Index" );
         }
