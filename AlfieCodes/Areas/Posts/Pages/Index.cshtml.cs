@@ -3,6 +3,7 @@ namespace AlfieCodes.Areas.Posts.Pages
     using System;
     using System.Linq;
     using AlfieCodes.Data;
+    using AlfieCodes.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
@@ -16,8 +17,11 @@ namespace AlfieCodes.Areas.Posts.Pages
         public string Title { get; set; }
         [BindProperty]
         public Guid PostId { get; set; }
+        [BindProperty]
+        public CommentRequest CommentRequest { get; set; }
 
         public BlogPost BlogPost { get; private set; }
+
 
         public IndexModel(BlogDbContext blogDbContext, ILogger<AlfieCodes.Pages.IndexModel> logger)
         {
