@@ -1,0 +1,42 @@
+﻿@page "{userId:guid}"
+@using AlfieCodes.Data
+@model AlfieCodes.Areas.Administration.Pages.Users.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "Shared/_AdminLayout";
+}
+
+<h1>Edit Blog Post</h1>
+
+<form method="post" style="text-align: center;">
+    <div class="form-group">
+        <label>
+            Id
+            <input asp-for="Users.Id" type="text" class="form-control cbp" aria-describedby="userId" readonly="" />
+        </label>
+        <small id="titleHelp" class="form-text text-muted">GUID of the user</small>
+    </div>
+
+    <div class="form-group">
+        <label>
+            Email
+            <input asp-for="Users.Email" type="text" class="form-control cbp" aria-describedby="userEmail" />
+        </label>
+        <small id="summaryHelp" class="form-text text-muted">Email of the user</small>
+    </div>
+    <div class="form-group">
+        <label>
+            Username
+            <input asp-for="Users.Username" type="text" class="form-control cbp" aria-describedby="userUsername" />
+        </label>
+        <small id="bodyHelp" class="form-text text-muted">Username of the user</small>
+    </div>
+    <div class="form-group" >
+        <label>
+            Is Admin
+            <input asp-for="Users.IsAdmin" type="text" class="form-control cbp" aria-describedby="userIsAdmin" />
+        </label>
+        <small id ="isAdminHelp" class="form-text text-muted">Whether the user is admin</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>

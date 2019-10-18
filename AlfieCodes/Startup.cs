@@ -9,6 +9,7 @@ namespace AlfieCodes
     using AlfieCodes.Data;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Authorization.Infrastructure;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,9 @@ namespace AlfieCodes
             services.AddAuthorization( options =>
                                        {
                                            options.AddPolicy( "Admin", policy =>
-                                                                           policy.Requirements.Add( new NameAuthorizationRequirement( "Admin" ) ) );
+                                                                       {
+                                                                           policy.Requirements.Add( new RolesAuthorizationRequirement( new []{"Admin"} ) );
+                                                                       } );
                                        } );
 
             services.AddRazorPages()

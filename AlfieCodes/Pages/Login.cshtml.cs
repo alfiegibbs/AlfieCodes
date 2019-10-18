@@ -49,6 +49,11 @@ namespace AlfieCodes.Pages
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
+            if ( user.IsAdmin )
+            {
+                claims.Add( new Claim( ClaimTypes.Role, "Admin" ) );
+            }
+
             var claimsIdentity = new ClaimsIdentity( claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             await HttpContext.SignInAsync( CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity) );

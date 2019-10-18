@@ -9,6 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace AlfieCodes
 {
+    using Serilog;
+    using Serilog.Core.Enrichers;
+    using Serilog.Events;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -20,7 +24,8 @@ namespace AlfieCodes
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseStartup<Startup>();
                 });
     }
 }

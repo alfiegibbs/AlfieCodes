@@ -29,7 +29,7 @@
                             <a asp-area="" asp-page="/Register" class=" nav-link text-light" >Register</a>
                         </form>
                     }
-                    else if ( User.Identity.Name == Roles.Admin || User.Identity.Name == Roles.SecondAdmin)
+                    else if ( User.IsInRole( "Admin" ))
                     {
                         <form class="form-inline my-2 my-lg-0" >
                             <a asp-area="Administration" asp-page="/Index" class=" nav-link text-light" >Admin Area</a>
@@ -41,7 +41,7 @@
                     else
                     {
                         <form class="form-inline my-2 my-lg-0" >
-                            <a asp-area="" asp-page="/Logout" class=" nav-link text-light" >Logout</a>
+                            <a asp-area="" asp-page="Logout" class=" nav-link text-light" >Logout</a>
                         </form>
                     }
 

@@ -5,4 +5,29 @@
     Layout = "Shared/_AdminLayout";
 }
 
-<h1>Index</h1>
+<h3>Administration Area > Users</h3>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">IsAdmin</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    @foreach (var users in Model.Users)
+    {
+    <tr>
+        <td>@users.Id</td>
+        <td>@users.Username</td>
+        <td>@users.Email</td>
+        <td>@users.IsAdmin</td>
+        <td><a asp-area="Administration" asp-page="/Users/Edit" asp-route-userId="@users.Id"><i style="text-align: center;" class="fas fa-pencil-alt"></i></a></td>
+        <td><a asp-area="Administration" asp-page="/Users/Delete" asp-route-userId="@users.Id"><i style="text-align: center;" class="fa fa-trash"></i></a></td>
+    </tr>
+    }
+</table>
