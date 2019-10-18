@@ -1,0 +1,35 @@
+﻿@page "{postId:guid}"
+@using AlfieCodes.Data
+@model AlfieCodes.Areas.Administration.Pages.Blog.CommentsModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "Shared/_AdminLayout";
+}
+
+<h1>Comments</h1>
+
+<table class="table" >
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Foreign Key</th>
+            <th scope="col">Username</th>
+            <th scope="col">Body</th>
+            <th scope="col">Date Time</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var comment in Model.Comments)
+         {
+             <tr>
+                 <td>@comment.Id</td>
+                 <td>@comment.ForeignKey</td>
+                 <td>@comment.Username</td>
+                 <td>@comment.Body</td>
+                 <td>@comment.DateTime</td>
+                 <td><a asp-area="Administration" asp-page="/Blog/DeleteComment" asp-route-postId="@comment.Id"><i style="text-align: center;" class="fa fa-trash"></i></a></td>
+             </tr>
+         }
+    </tbody>
+</table>

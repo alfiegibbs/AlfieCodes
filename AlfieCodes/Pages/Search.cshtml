@@ -1,0 +1,14 @@
+﻿@page "{searchTerm}"
+@model AlfieCodes.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+    Layout = "Shared/_Layout";
+}
+
+
+<form method="post" style="text-align: center; margin-top: 25vh;" >
+    <h1>Search</h1>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
+    <br />
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+</form>

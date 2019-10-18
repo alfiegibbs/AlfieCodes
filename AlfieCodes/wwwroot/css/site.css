@@ -116,3 +116,17 @@ code {
 .cbp {
     width: 50vw;
 }
+
+.comment-container {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.comment-container textarea {
+    width: 54vw;
+}
+
+.comment {
+    margin: 20px;
+    width: 40vw;
+}

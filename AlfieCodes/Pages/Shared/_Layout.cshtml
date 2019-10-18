@@ -23,6 +23,7 @@
                     </ul>
                     @if ( !User.Identity.IsAuthenticated )
                     {
+
                         <form class="form-inline my-2 my-lg-0" >
                             <a asp-area="" asp-page="/Login" class="nav-link text-light" >Login</a>
                             <a asp-area="" asp-page="/Register" class=" nav-link text-light" >Register</a>

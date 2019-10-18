@@ -15,6 +15,8 @@ namespace AlfieCodes.Pages
         private readonly BlogDbContext _blogDbContext;
         private readonly ILogger<IndexModel> _logger;
 
+        [BindProperty]
+        public string Search { get; set; }
 
         public IReadOnlyCollection<BlogPost> BlogPosts { get; private set; }
 

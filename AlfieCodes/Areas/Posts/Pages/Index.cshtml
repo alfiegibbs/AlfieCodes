@@ -1,4 +1,5 @@
 ﻿@page "{title}-{postId:guid}"
+@using AlfieCodes.Data
 @using AlfieCodes.Models
 @using HeyRed.MarkdownSharp;
 @using Humanizer
@@ -43,3 +44,29 @@
 
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Check out ,'@Model.BlogPost.Title'!" data-lang="en" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<div class="comment-container" >
+     @foreach ( var comment in Model.Comments )
+     {
+        <div style="text-align: left">
+            <hr />
+            <h8>@comment.Username</h8>
+            <p>@comment.Body</p>
+            <small>@comment.DateTime</small>
+        </div>
+
+
+     }
+    
+
+    <form class="justify-content-center" method="post" >
+        <div class="form-group" >
+            <label>
+                Comment:
+                <textarea asp-for="CommentRequest.Body" aria-describedby="usernameHelp" class="form-control" placeholder="Comment" type="text"></textarea>
+            </label>
+            <br />
+            <button class="btn btn-primary" type="submit" >Submit</button>
+        </div>
+    </form>
+</div>
