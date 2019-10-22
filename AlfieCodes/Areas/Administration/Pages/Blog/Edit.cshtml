@@ -45,5 +45,12 @@
         </label>
         <small id="readTimeHelp" class="form-text text-muted">How long it'll take to read.</small>
     </div>
+    <div class="form-group">
+        <label>
+            Image Link
+            <input asp-for="BlogPost.Image" type="text" class="form-control cbp" aria-describedby="readtimeHelp" placeholder="Time to read" />
+        </label>
+        <small id="imageHelp" class="form-text text-muted">Link to an image you wish to use for the blog.</small>
+    </div>
     <button type="submit" class="btn btn-primary">Edit</button>
 </form>

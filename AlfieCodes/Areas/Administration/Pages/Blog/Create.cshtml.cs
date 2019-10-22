@@ -30,6 +30,11 @@
                 return Page();
             }
 
+            if ( BlogPost.Image == null )
+            {
+                BlogPost.Image = "https://dummyimage.com/600x400/000/fff&text=Placeholder";
+            }
+
             _blogDbContext.BlogPosts.Add( new BlogPost
             {
                 CreatedAt = DateTime.Now,
@@ -37,7 +42,8 @@
                 Body = BlogPost.Body,
                 Summary = BlogPost.Summary,
                 Tags = BlogPost.Tags,
-                ReadTime = BlogPost.ReadTime
+                ReadTime = BlogPost.ReadTime,
+                Image = BlogPost.Image
             } );
 
             await _blogDbContext.SaveChangesAsync();

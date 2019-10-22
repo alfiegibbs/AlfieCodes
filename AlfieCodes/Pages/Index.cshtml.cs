@@ -26,6 +26,7 @@ namespace AlfieCodes.Pages
             _logger = logger;
         }
 
+
         public void OnGet()
         {
             // Sticks newest blog post on top

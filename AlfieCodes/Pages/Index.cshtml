@@ -5,18 +5,22 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-@foreach ( var blogPost in Model.BlogPosts )
-{
-    <div class="card" style="width: 18rem; text-align: center; display: block; margin: 0 auto;">
-        <div style="text-align: center;" >
-            <div class="card-body" >
-                <a class="card-title" asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString( "N" ))" >@blogPost.Title</a>
-                <div class="card-text">@blogPost.ReadTime mins</div>
-                <div class="card-text">@blogPost.Summary</div>
-                <small>@blogPost.CreatedAt.Humanize()</small>
+<div class="row" >
+    @foreach ( var blogPost in Model.BlogPosts )
+    {
+        <div class="col" >
+            <div class="card" style="width: 18rem; text-align: center; display: block; margin: 0 auto;">
+                <div style="text-align: center;" >
+                    <div class="card-body bg-dark text-white">
+                        <img src="@blogPost.Image" class="card-img-top" alt="...">
+                        <a class="card-title" asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString( "N" ))">@blogPost.Title</a>
+                        <div class="card-text">@blogPost.ReadTime mins</div>
+                        <div class="card-text">@blogPost.Summary</div>
+                        <small>@blogPost.CreatedAt.Humanize()</small>
+                    </div>
+                </div>
             </div>
+            <br />
         </div>
-    </div>
-    <br />
-}
+    }
+</div>

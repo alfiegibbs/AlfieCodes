@@ -48,6 +48,7 @@
                 blogPost.Summary = BlogPost.Summary;
                 blogPost.Tags = BlogPost.Tags;
                 blogPost.Title = BlogPost.Title;
+                blogPost.Image = BlogPost.Image;
 
                 _blogDbContext.BlogPosts.Update( blogPost );
                 _blogDbContext.SaveChanges();

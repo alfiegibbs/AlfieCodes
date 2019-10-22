@@ -10,22 +10,42 @@ using Microsoft.Extensions.Logging;
 namespace AlfieCodes
 {
     using Serilog;
-    using Serilog.Core.Enrichers;
     using Serilog.Events;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+
+            Log.Logger = new LoggerConfiguration()
+                         .MinimumLevel.Information()
+                         .MinimumLevel.Override( "Microsoft", LogEventLevel.Warning )
+                         .Enrich.FromLogContext()
+                         .WriteTo.Seq( Environment.GetEnvironmentVariable( "SEQ_URL" ) ?? "http://localhost:5341" )
+                         .CreateLogger();
+        
+            try
+            {
+                Log.Information("Starting up");
+                CreateHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder
-                        .UseStartup<Startup>();
-                });
+        public static IHostBuilder CreateHostBuilder( string[] args ) =>
+            Host.CreateDefaultBuilder( args )
+                .UseSerilog()
+                .ConfigureWebHostDefaults( webBuilder =>
+                   {
+                       webBuilder
+                           .UseStartup<Startup>();
+                   } );
     }
 }

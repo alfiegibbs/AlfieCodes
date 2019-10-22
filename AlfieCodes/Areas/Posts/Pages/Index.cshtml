@@ -23,32 +23,35 @@
 
     var mark = new Markdown(options);
 }
-<div>
-    <h1>@Model.BlogPost.Title</h1>
-    <div>@Html.Raw(mark.Transform(Model.BlogPost.Body))</div>
-    <small>@Model.BlogPost.CreatedAt.Humanize()</small>
+    <div>
+        <h1>@Model.BlogPost.Title</h1>
+        <hr />
+        <div>@Html.Raw(mark.Transform(Model.BlogPost.Body))</div>
+        <hr />
+        <small>@Model.BlogPost.CreatedAt.Humanize()</small>
 
-    <div class="tagCloud" style="display: inline; padding-top: 50px;">
-        <br />
-        @if (tags != null)
-        {
-            @foreach (var tag in tags)
+        <div class="tagCloud" style="display: inline; padding-top: 50px;">
+            <br />
+            @if (tags != null)
             {
-                <span style="text-align: center; position: relative; top:20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
-                    @tag
-                </span>
+                @foreach (var tag in tags)
+                {
+                    <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
+                        @tag
+                    </span>
+                }
             }
-        }
+        </div>
     </div>
-</div>
 
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Check out ,'@Model.BlogPost.Title'!" data-lang="en" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <div class="comment-container" >
-     @foreach ( var comment in Model.Comments )
-     {
-        <div style="text-align: left">
+    <h3>Comments:</h3>
+    @foreach ( var comment in Model.Comments )
+    {
+        <div style="text-align: left" >
             <hr />
             <h8>@comment.Username</h8>
             <p>@comment.Body</p>
@@ -56,8 +59,8 @@
         </div>
 
 
-     }
-    
+    }
+
 
     <form class="justify-content-center" method="post" >
         <div class="form-group" >

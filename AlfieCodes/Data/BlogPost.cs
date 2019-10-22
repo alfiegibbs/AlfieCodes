@@ -11,5 +11,6 @@
         public string Summary { get; set; }
         public string Tags { get; set; }
         public int ReadTime { get; set; }
+        public string Image { get; set; }
     }
 }

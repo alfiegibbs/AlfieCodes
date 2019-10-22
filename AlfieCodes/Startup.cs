@@ -12,6 +12,7 @@ namespace AlfieCodes
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Serilog;
 
     public class Startup
     {
@@ -68,8 +69,11 @@ namespace AlfieCodes
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection()
-               .UseStaticFiles()
+            app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
+
+            app.UseStaticFiles()
+               .UseSerilogRequestLogging()
+               .UseHttpsRedirection()
                .UseRouting()
                .UseAuthentication()
                .UseAuthorization();
