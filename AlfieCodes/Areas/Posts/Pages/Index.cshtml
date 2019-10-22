@@ -1,16 +1,20 @@
 ﻿@page "{title}-{postId:guid}"
-@using AlfieCodes.Data
-@using AlfieCodes.Models
 @using HeyRed.MarkdownSharp;
 @using Humanizer
 
 @model AlfieCodes.Areas.Posts.Pages.IndexModel
+@section metas {
+    <meta name="description" content="@Model.BlogPost.Summary" />
+    <meta name="title" content="@Model.BlogPost.Title" />
+    <meta name="title" content="@Model.BlogPost.Title" />
+    <meta name="twitter:label1" value="Readtime" />
+    <meta name="twitter:data1" value="@Model.BlogPost.ReadTime" />
+}
 @{
     Layout = "Shared/_Layout";
-    ViewData[ "Title" ] = @Model.BlogPost.Title;
+    ViewData["Title"] = @Model.BlogPost.Title;
 
-    string[] tags = @Model.BlogPost.Tags?.Split( " " );
-
+    string[] tags = @Model.BlogPost.Tags?.Split(" ");
 
     var options = new MarkdownOptions
     {
@@ -20,56 +24,53 @@
         QuoteSingleLine = true,
         StrictBoldItalic = true
     };
-
     var mark = new Markdown(options);
-}
-    <div>
-        <h1>@Model.BlogPost.Title</h1>
-        <hr />
-        <div>@Html.Raw(mark.Transform(Model.BlogPost.Body))</div>
-        <hr />
-        <small>@Model.BlogPost.CreatedAt.Humanize()</small>
 
-        <div class="tagCloud" style="display: inline; padding-top: 50px;">
-            <br />
-            @if (tags != null)
+}
+<div>
+    <h1>@Model.BlogPost.Title</h1>
+    <hr />
+    <div>@Html.Raw(mark.Transform(Model.BlogPost.Body))</div>
+    <hr />
+    <small>@Model.BlogPost.CreatedAt.Humanize()</small>
+
+    <div class="tagCloud" style="display: inline; padding-top: 50px;">
+        <br />
+        @if (tags != null)
+        {
+            @foreach (var tag in tags)
             {
-                @foreach (var tag in tags)
-                {
-                    <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
-                        @tag
-                    </span>
-                }
+                <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
+                    @tag
+                </span>
             }
-        </div>
+        }
     </div>
+</div>
 
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Check out ,'@Model.BlogPost.Title'!" data-lang="en" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<div class="comment-container" >
+<div class="comment-container">
     <h3>Comments:</h3>
-    @foreach ( var comment in Model.Comments )
+    @foreach (var comment in Model.Comments)
     {
-        <div style="text-align: left" >
+        <div style="text-align: left">
             <hr />
             <h8>@comment.Username</h8>
             <p>@comment.Body</p>
             <small>@comment.DateTime</small>
         </div>
-
-
     }
 
-
-    <form class="justify-content-center" method="post" >
-        <div class="form-group" >
+    <form class="justify-content-center" method="post">
+        <div class="form-group">
             <label>
                 Comment:
                 <textarea asp-for="CommentRequest.Body" aria-describedby="usernameHelp" class="form-control" placeholder="Comment" type="text"></textarea>
             </label>
             <br />
-            <button class="btn btn-primary" type="submit" >Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </div>
     </form>
 </div>

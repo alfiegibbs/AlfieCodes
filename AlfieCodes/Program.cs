@@ -16,9 +16,12 @@ namespace AlfieCodes
     {
         public static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile( "appsettings.json" )
+                .Build();
 
             Log.Logger = new LoggerConfiguration()
-                         .MinimumLevel.Information()
+                         .ReadFrom.Configuration( configuration )
                          .MinimumLevel.Override( "Microsoft", LogEventLevel.Warning )
                          .Enrich.FromLogContext()
                          .WriteTo.Seq( Environment.GetEnvironmentVariable( "SEQ_URL" ) ?? "http://localhost:5341" )
