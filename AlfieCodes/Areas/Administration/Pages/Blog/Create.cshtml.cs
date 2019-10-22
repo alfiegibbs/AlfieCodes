@@ -1,6 +1,8 @@
 ﻿namespace AlfieCodes.Areas.Administration.Pages.Blog
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AlfieCodes.Data;
     using Microsoft.AspNetCore.Mvc;
@@ -35,12 +37,13 @@
                 BlogPost.Image = "https://dummyimage.com/600x400/000/fff&text=Placeholder";
             }
 
+            var summary = String.Join( " ", BlogPost.Body.Split().Take( 50 ) );
             _blogDbContext.BlogPosts.Add( new BlogPost
             {
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
                 Body = BlogPost.Body,
-                Summary = BlogPost.Summary,
+                Summary = summary,
                 Tags = BlogPost.Tags,
                 ReadTime = BlogPost.ReadTime,
                 Image = BlogPost.Image

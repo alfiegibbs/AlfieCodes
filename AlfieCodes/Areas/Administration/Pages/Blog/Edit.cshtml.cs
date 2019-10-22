@@ -45,7 +45,6 @@
 
                 blogPost.Body = BlogPost.Body;
                 blogPost.ReadTime = BlogPost.ReadTime;
-                blogPost.Summary = BlogPost.Summary;
                 blogPost.Tags = BlogPost.Tags;
                 blogPost.Title = BlogPost.Title;
                 blogPost.Image = BlogPost.Image;

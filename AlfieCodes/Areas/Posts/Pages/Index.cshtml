@@ -14,7 +14,7 @@
     <meta name="twitter:image" content="@Model.BlogPost.Image">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:label1" value="Readtime" />
-    <meta name="twitter:data1" value="@Model.BlogPost.ReadTime" />
+    <meta name="twitter:data1" value="@Model.BlogPost.ReadTime minute(s)" />
 }
 @{
     Layout = "Shared/_Layout";
@@ -46,7 +46,7 @@
         {
         @foreach (var tag in tags)
             {
-        <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
+        <span class="tag">
             @tag
         </span>
             }

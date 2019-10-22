@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="mr-auto navbar-nav" >
                         <li class="nav-item" >
-                            <a asp-page="/Index" class="nav-link text-light" >Home</a>
+                            <a asp-area="" asp-page="/Index" class="nav-link text-light" >Home</a>
                         </li>
                     </ul>
                     @if ( !User.Identity.IsAuthenticated )
