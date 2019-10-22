@@ -6,7 +6,13 @@
 @section metas {
     <meta name="description" content="@Model.BlogPost.Summary" />
     <meta name="title" content="@Model.BlogPost.Title" />
-    <meta name="title" content="@Model.BlogPost.Title" />
+    <meta property="og:description" content="@Model.BlogPost.Summary">
+    <meta property="og:title" content="@Model.BlogPost.Title">
+    <meta property="og:image" content="@Model.BlogPost.Image">
+    <meta name="twitter:title" content="@Model.BlogPost.Title">
+    <meta name="twitter:description" content="@Model.BlogPost.Summary">
+    <meta name="twitter:image" content="@Model.BlogPost.Image">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:label1" value="Readtime" />
     <meta name="twitter:data1" value="@Model.BlogPost.ReadTime" />
 }
@@ -38,11 +44,11 @@
         <br />
         @if (tags != null)
         {
-            @foreach (var tag in tags)
+        @foreach (var tag in tags)
             {
-                <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
-                    @tag
-                </span>
+        <span style="text-align: center; position: relative; top: 20px; background-color: gainsboro; padding: 5px; margin: 0.5em;">
+            @tag
+        </span>
             }
         }
     </div>
@@ -55,12 +61,12 @@
     <h3>Comments:</h3>
     @foreach (var comment in Model.Comments)
     {
-        <div style="text-align: left">
-            <hr />
-            <h8>@comment.Username</h8>
-            <p>@comment.Body</p>
-            <small>@comment.DateTime</small>
-        </div>
+    <div style="text-align: left">
+        <hr />
+        <h8>@comment.Username</h8>
+        <p>@comment.Body</p>
+        <small>@comment.DateTime</small>
+    </div>
     }
 
     <form class="justify-content-center" method="post">
