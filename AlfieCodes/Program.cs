@@ -14,27 +14,31 @@ namespace AlfieCodes
 
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main( string[] args )
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile( "appsettings.json" )
-                .Build();
+                                .AddJsonFile( "appsettings.json" )
+                                .Build();
 
             Log.Logger = new LoggerConfiguration()
+                         .Enrich.WithProperty( "Name", "Alfie" )
+                         .Enrich.WithProperty( "Environment", Environment.GetEnvironmentVariable( "SEQ_ENV" ) ?? "Test" )
+                         .Enrich.WithProperty( "Component", Environment.GetEnvironmentVariable( "SEQ_COMP" ) ?? "Blog" )
                          .ReadFrom.Configuration( configuration )
                          .MinimumLevel.Override( "Microsoft", LogEventLevel.Warning )
                          .Enrich.FromLogContext()
-                         .WriteTo.Seq( Environment.GetEnvironmentVariable( "SEQ_URL" ) ?? "http://localhost:5341" )
+                         .WriteTo.Seq( serverUrl : Environment.GetEnvironmentVariable( "SEQ_URL" ) ?? "http://localhost:5341",
+                                       apiKey : Environment.GetEnvironmentVariable( "SEQ_API_KEY" ) )
                          .CreateLogger();
-        
+
             try
             {
-                Log.Information("Starting up");
-                CreateHostBuilder(args).Build().Run();
+                Log.Information( "Starting up" );
+                CreateHostBuilder( args ).Build().Run();
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
-                Log.Fatal(ex, "Application start-up failed");
+                Log.Fatal( ex, "Application start-up failed" );
             }
             finally
             {
@@ -46,9 +50,9 @@ namespace AlfieCodes
             Host.CreateDefaultBuilder( args )
                 .UseSerilog()
                 .ConfigureWebHostDefaults( webBuilder =>
-                   {
-                       webBuilder
-                           .UseStartup<Startup>();
-                   } );
+                                           {
+                                               webBuilder
+                                                   .UseStartup<Startup>();
+                                           } );
     }
 }
