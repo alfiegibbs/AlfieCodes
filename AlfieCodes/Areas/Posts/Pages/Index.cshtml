@@ -20,7 +20,7 @@
     Layout = "Shared/_Layout";
     ViewData["Title"] = @Model.BlogPost.Title;
 
-    string[] tags = @Model.BlogPost.Tags?.Split(" ");
+    string[] tags = @Model.BlogPost.Tags?.Split(", ");
 
     var options = new MarkdownOptions
     {
@@ -33,6 +33,12 @@
     var mark = new Markdown(options);
 
 }
+<style>
+    image, img {
+        max-width: 90vw !important;
+    }
+</style>
+
 <div>
     <h1>@Model.BlogPost.Title</h1>
     <hr />
@@ -44,11 +50,11 @@
         <br />
         @if (tags != null)
         {
-        @foreach (var tag in tags)
+            @foreach (var tag in tags)
             {
-        <span class="tag">
-            @tag
-        </span>
+                <span class="tag">
+                    @tag
+                </span>
             }
         }
     </div>
@@ -61,12 +67,12 @@
     <h3>Comments:</h3>
     @foreach (var comment in Model.Comments)
     {
-    <div style="text-align: left">
-        <hr />
-        <h8>@comment.Username</h8>
-        <p>@comment.Body</p>
-        <small>@comment.DateTime</small>
-    </div>
+        <div style="text-align: left">
+            <hr />
+            <h8>@comment.Username</h8>
+            <p>@comment.Body</p>
+            <small>@comment.DateTime</small>
+        </div>
     }
 
     <form class="justify-content-center" method="post">
