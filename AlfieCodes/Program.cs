@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace AlfieCodes
 {
+    using System;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
     using Serilog;
     using Serilog.Events;
 
@@ -25,7 +20,7 @@ namespace AlfieCodes
                          .Enrich.WithProperty( "Environment", Environment.GetEnvironmentVariable( "SEQ_ENV" ) ?? "Test" )
                          .Enrich.WithProperty( "Component", Environment.GetEnvironmentVariable( "SEQ_COMP" ) ?? "Blog" )
                          .ReadFrom.Configuration( configuration )
-                         .MinimumLevel.Override( "Microsoft", LogEventLevel.Warning )
+                         .MinimumLevel.Override( "Microsoft", configuration.GetValue<LogEventLevel>( "LogLevel" ) )
                          .Enrich.FromLogContext()
                          .WriteTo.Seq( serverUrl : Environment.GetEnvironmentVariable( "SEQ_URL" ) ?? "http://localhost:5341",
                                        apiKey : Environment.GetEnvironmentVariable( "SEQ_API_KEY" ) )

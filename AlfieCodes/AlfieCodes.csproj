@@ -26,6 +26,7 @@
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
     <PackageReference Include="StackifyHttpModule" Version="1.0.41" />
     <PackageReference Include="StackifyMiddleware" Version="3.0.4.2" />
+    <PackageReference Include="SuperBenchmarker" Version="0.1.5" />
   </ItemGroup>
 
 </Project>

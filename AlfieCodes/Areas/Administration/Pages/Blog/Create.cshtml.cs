@@ -32,11 +32,6 @@
                 return Page();
             }
 
-            if ( BlogPost.Image == null )
-            {
-                BlogPost.Image = "https://dummyimage.com/600x400/000/fff&text=Placeholder";
-            }
-
             var summary = String.Join( " ", BlogPost.Body.Split().Take( 50 ) );
             _blogDbContext.BlogPosts.Add( new BlogPost
             {
@@ -46,7 +41,7 @@
                 Summary = summary,
                 Tags = BlogPost.Tags,
                 ReadTime = BlogPost.ReadTime,
-                Image = BlogPost.Image
+                Image = BlogPost.Image ?? "https://dummyimage.com/600x400/000/fff&text=Placeholder"
             } );
 
             await _blogDbContext.SaveChangesAsync();
