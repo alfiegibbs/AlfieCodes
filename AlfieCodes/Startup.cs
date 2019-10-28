@@ -12,6 +12,7 @@ namespace AlfieCodes
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Pioneer.Pagination;
     using Serilog;
 
     public class Startup
@@ -27,6 +28,8 @@ namespace AlfieCodes
         public void ConfigureServices( IServiceCollection services )
         {
             services.AddDbContextPool<BlogDbContext>( options => { options.UseSqlServer( Configuration.GetConnectionString( "AlfieCodesDb" ) ); } );
+
+            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
             services.AddHttpContextAccessor();
             services.AddAuthentication( CookieAuthenticationDefaults.AuthenticationScheme )

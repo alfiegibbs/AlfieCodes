@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Home page";
 }
+
 @foreach (var blogPost in Model.BlogPosts)
 {
     <a class="card-title" asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString( "N" ))">
@@ -18,3 +19,20 @@
         <hr />
     </a>
 }
+
+@{
+    var prevDisabled = !Model.BlogPosts.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.BlogPosts.HasNextPage ? "disabled" : "";
+}
+<div style="margin: 0 auto; display: inline-block; text-align: center;">
+    <a asp-page="./Index"
+       asp-route-pageIndex="@(Model.BlogPosts.PageIndex - 1)"
+       class="btn btn-primary @prevDisabled" style="margin: 0; display: inline-block; text-align: center;">
+        Previous
+    </a>
+    <a asp-page="./Index"
+       asp-route-pageIndex="@(Model.BlogPosts.PageIndex + 1)"
+       class="btn btn-primary @nextDisabled" style="margin: 0; display: inline-block; text-align: center;">
+        Next
+    </a>
+</div>
