@@ -19,6 +19,9 @@
 
         [ BindProperty ]
         public BlogPost BlogPost { get; set; }
+        [ BindProperty ]
+        public Tags Tags { get; set; }
+
 
         public IActionResult OnGet()
         {
@@ -35,13 +38,20 @@
             var summary = String.Join( " ", BlogPost.Body.Split().Take( 50 ) );
             _blogDbContext.BlogPosts.Add( new BlogPost
             {
+                Id = new Guid(),
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
                 Body = BlogPost.Body,
                 Summary = summary,
-                Tags = BlogPost.Tags,
                 ReadTime = BlogPost.ReadTime,
                 Image = BlogPost.Image ?? "https://dummyimage.com/600x400/000/fff&text=Placeholder"
+            } );
+
+            _blogDbContext.Tags.Add( new Tags
+            {
+                Id = new Guid(),
+                ForeignKey = BlogPost.Id,
+                Value = BlogPost.Tags
             } );
 
             await _blogDbContext.SaveChangesAsync();

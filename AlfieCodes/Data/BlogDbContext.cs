@@ -13,5 +13,6 @@
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Comments> Comments { get; set; }
+        public DbSet<Tags> Tags { get; set; }
     }
 }

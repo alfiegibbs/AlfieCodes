@@ -21,8 +21,6 @@
             _logger = logger;
         }
 
-
-
         public async Task OnGetAsync(int? pageIndex)
         {
             IQueryable<BlogPost> blogPostsData = from bp in _blogDbContext.BlogPosts orderby bp.CreatedAt select bp;

@@ -22,6 +22,7 @@ namespace AlfieCodes.Areas.Posts.Pages
         [BindProperty]
         public CommentRequest CommentRequest { get; set; }
         public IReadOnlyCollection<Comments> Comments { get; private set; }
+        public IReadOnlyCollection<Tags> Tags{ get; private set; }
 
 
         public BlogPost BlogPost { get; private set; }
@@ -39,6 +40,7 @@ namespace AlfieCodes.Areas.Posts.Pages
             commentList.Reverse();
             Comments = commentList;
 
+            var tagList = _blogDbContext.Tags.Where( x => x.ForeignKey == postId ).ToList();
 
             Title = title;
             PostId = postId;
