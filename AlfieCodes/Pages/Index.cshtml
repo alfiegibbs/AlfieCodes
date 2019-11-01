@@ -25,7 +25,7 @@
         <ul>
             @foreach ( var tag in Model.TagCloud )
             {
-                <li><a href="#" >@tag.Name<span>@tag.Count</span></a></li>
+                <li><a asp-page="/Tags" asp-route-tag="@tag.Name" >@tag.Name<span>@tag.Count</span></a></li>
             }
         </ul>
     </div>
