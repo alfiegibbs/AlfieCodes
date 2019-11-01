@@ -8,6 +8,7 @@ namespace AlfieCodes.Areas.Posts.Pages
     using AlfieCodes.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
     public class IndexModel : PageModel
@@ -34,17 +35,23 @@ namespace AlfieCodes.Areas.Posts.Pages
             _logger = logger;
         }
 
-        public IActionResult OnGet(string title, Guid postId)
+        public async Task<IActionResult> OnGet(string title, Guid postId)
+
         {
             var commentList = _blogDbContext.Comments.Where( x => x.ForeignKey == postId ).ToList();
             commentList.Reverse();
             Comments = commentList;
 
-            var tagList = _blogDbContext.Tags.Where( x => x.ForeignKey == postId ).ToList();
-
             Title = title;
             PostId = postId;
-            BlogPost = _blogDbContext.BlogPosts.FirstOrDefault( x => x.Id == PostId );
+
+            BlogPost = await _blogDbContext.BlogPosts
+                                     .Include( x => x.BlogPostTags )
+                                     .ThenInclude( x => x.Tag )
+                                     .FirstOrDefaultAsync( x => x.Id == PostId );
+
+            Tags = BlogPost.BlogPostTags.Select( x => x.Tag ).ToList();
+
             if ( BlogPost == null )
             {
                 return NotFound();

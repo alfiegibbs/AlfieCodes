@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AlfieCodes.Data;
+    using AlfieCodes.Models;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
@@ -13,7 +14,7 @@
         private readonly BlogDbContext _blogDbContext;
         private readonly ILogger<IndexModel> _logger;
         public PaginatedList<BlogPost> BlogPosts { get; private set; }
-
+        public List<TagCloudEntry> TagCloud { get; set; }
 
         public IndexModel( BlogDbContext blogDbContext, ILogger<IndexModel> logger )
         {
@@ -21,15 +22,26 @@
             _logger = logger;
         }
 
-        public async Task OnGetAsync(int? pageIndex)
+        public async Task OnGetAsync( int? pageIndex )
         {
-            IQueryable<BlogPost> blogPostsData = from bp in _blogDbContext.BlogPosts orderby bp.CreatedAt select bp;
+            var blogPostsData = from bp in _blogDbContext.BlogPosts
+                                orderby bp.CreatedAt
+                                select bp;
 
             int pageSize = 5;
-            PaginatedList<BlogPost> paginatedList = BlogPosts = await PaginatedList<BlogPost>.CreateAsync(
+            BlogPosts = await PaginatedList<BlogPost>.CreateAsync(
                                                                   blogPostsData.AsNoTracking()
-                                                                        .OrderByDescending( bp => bp.CreatedAt ), 
-                                                                        pageIndex ?? 1, pageSize );
+                                                                               .OrderByDescending( bp => bp.CreatedAt ),
+                                                                  pageIndex ?? 1, pageSize );
+
+            var tags = from tag in _blogDbContext.Tags
+                       let tagCount = tag.BlogPosts.Count
+                       let tagName = tag.Value
+                       orderby tagCount descending
+                       select new TagCloudEntry( tagName, tagCount );
+
+            TagCloud = await tags.ToListAsync();
+
         }
     }
 }

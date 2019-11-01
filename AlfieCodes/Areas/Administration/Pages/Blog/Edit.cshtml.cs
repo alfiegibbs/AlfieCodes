@@ -2,11 +2,12 @@
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
     using AlfieCodes.Data;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.EntityFrameworkCore;
+
     public class EditModel : PageModel
     {
         private readonly BlogDbContext _blogDbContext;
@@ -18,17 +19,31 @@
 
         [ BindProperty ]
         public BlogPost BlogPost { get; set; }
-        [BindProperty]
+
+        [ BindProperty ]
         public Guid PostId { get; set; }
 
-        public IActionResult OnGet(Guid postId)
+        [ BindProperty ]
+        public string Tags { get; set; }
+
+        public IActionResult OnGet( Guid postId )
         {
             PostId = postId;
-            BlogPost = _blogDbContext.BlogPosts.FirstOrDefault( x => x.Id == PostId );
+            BlogPost = _blogDbContext.BlogPosts
+                                     .Include( x => x.BlogPostTags )
+                                     .ThenInclude( x => x.Tag )
+                                     .FirstOrDefault( x => x.Id == PostId );
             if ( BlogPost == null )
             {
                 return NotFound();
             }
+
+            var tagValues = BlogPost.BlogPostTags
+                                    .Select( x => x.Tag.Value );
+            Tags = tagValues.Any()
+                ? tagValues.Aggregate( ( lhs, rhs ) => $"{lhs},{rhs}" )
+                : string.Empty;
+
             return Page();
         }
 
@@ -39,18 +54,47 @@
                 return Page();
             }
 
-            await using ( _blogDbContext )
+
+            var blogPost = await _blogDbContext.BlogPosts
+                                               .Include( bp => bp.BlogPostTags )
+                                               .SingleOrDefaultAsync( bp => bp.Id == PostId );
+
+            if ( blogPost == null )
             {
-                var blogPost = _blogDbContext.BlogPosts.Find( PostId );
+                return NotFound();
+            }
 
-                blogPost.Body = BlogPost.Body;
-                blogPost.ReadTime = BlogPost.ReadTime;
-                blogPost.Tags = BlogPost.Tags;
-                blogPost.Title = BlogPost.Title;
-                blogPost.Image = BlogPost.Image;
+            blogPost.Body = BlogPost.Body;
+            blogPost.ReadTime = BlogPost.ReadTime;
+            blogPost.Title = BlogPost.Title;
+            blogPost.Image = BlogPost.Image;
 
-                _blogDbContext.BlogPosts.Update( blogPost );
-                _blogDbContext.SaveChanges();
+            blogPost.BlogPostTags.Clear();
+
+            if ( !string.IsNullOrWhiteSpace( Tags ) )
+            {
+                foreach ( string tagString in Tags.Split( "," ) )
+                {
+                    var tag = _blogDbContext.Tags.FirstOrDefault( x => x.Value == tagString );
+
+                    if ( tag == null )
+                    {
+                        tag = new Tags
+                        {
+                            Id = new Guid(),
+                            Value = tagString
+                        };
+
+                        _blogDbContext.Tags.Add( tag );
+                    }
+
+                    blogPost.BlogPostTags.Add( new BlogPostTags
+                    {
+                        BlogPost = BlogPost,
+                        BlogPostId = blogPost.Id,
+                        Tag = tag
+                    } );
+                }
             }
 
             await _blogDbContext.SaveChangesAsync();
@@ -58,4 +102,4 @@
             return RedirectToPage( "/Index" );
         }
     }
-    }
+}

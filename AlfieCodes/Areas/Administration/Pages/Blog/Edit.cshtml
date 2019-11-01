@@ -1,4 +1,5 @@
 ﻿@page "{postId:guid}"
+@using System.Linq
 @using AlfieCodes.Data
 @model AlfieCodes.Areas.Administration.Pages.Blog.EditModel
 @{
@@ -23,12 +24,12 @@
         </label>
         <small id="bodyHelp" class="form-text text-muted">Body of the blog post</small>
     </div>
-    <div class="form-group" >
+    <div class="form-group">
         <label>
             Tags
-            <input asp-for="BlogPost.Tags" type="text" class="form-control cbp" aria-describedby="titleBody" placeholder="Tags" />
+            <input asp-for="Tags" type="text" class="form-control cbp" aria-describedby="titleBody" placeholder="Tags" />
         </label>
-        <small id ="tagsHelp" class="form-text text-muted">Tags of the blog post</small>
+        <small id="tagsHelp" class="form-text text-muted">Tags of the blog post</small>
     </div>
     <div class="form-group">
         <label>

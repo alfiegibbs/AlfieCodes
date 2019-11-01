@@ -146,3 +146,115 @@ code {
     margin: 80px;
     max-width: 30vw;
 }
+
+
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+    border: 0;
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+    border: 0;
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+    border: 0;
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+    border: 0;
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border: 0;
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+    border: 0;
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.search input {
+    border: 0;
+    border-bottom: 1px solid gray;
+}
+
+.search {
+    width: 30vw;
+    margin: 0 auto;
+    display: block;
+    border: 0;
+    border-bottom: 1px solid gray;
+}
+
+.search-button {
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}
+
+.tagcloud03 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tagcloud03 ul li {
+	display: inline-block;
+	margin: 0 .3em .3em 0;
+	padding: 0;
+}
+
+.tagcloud03 ul li a {
+	position: relative;
+	display: inline-block;
+	max-width: 100px;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 2.5em 0 1em;
+	background-color: #fff;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #333;
+	font-size: 13px;
+	text-decoration: none;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+
+.tagcloud03 li span {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	z-index: 2;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	background-color: #3498db;
+	border-radius: 100%;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	-webkit-transition: .2s;
+	
+    transition: .2s;
+}
+.tagcloud03 ul li a:hover {
+	background-color: #3498db;
+	border: 1px solid #3498db;
+	color: #fff;
+}
+
+.tagcloud03 ul li a:hover span {
+	background-color: #fff;
+	color: #3498db;
+}

@@ -35,24 +35,43 @@
                 return Page();
             }
 
-            var summary = String.Join( " ", BlogPost.Body.Split().Take( 50 ) );
-            _blogDbContext.BlogPosts.Add( new BlogPost
+            string summary = string.Join( " ", BlogPost.Body.Split().Take( 50 ) );
+
+            var blogPost = new BlogPost
             {
-                Id = new Guid(),
                 CreatedAt = DateTime.Now,
                 Title = BlogPost.Title,
                 Body = BlogPost.Body,
                 Summary = summary,
                 ReadTime = BlogPost.ReadTime,
                 Image = BlogPost.Image ?? "https://dummyimage.com/600x400/000/fff&text=Placeholder"
-            } );
+            };
+            
+            _blogDbContext.BlogPosts.Add( blogPost );
 
-            _blogDbContext.Tags.Add( new Tags
+            foreach ( string tagString in Tags.Value.Split( "," ) )
             {
-                Id = new Guid(),
-                ForeignKey = BlogPost.Id,
-                Value = BlogPost.Tags
-            } );
+                var tag = _blogDbContext.Tags.FirstOrDefault( x => x.Value == tagString );
+
+                if ( tag == null )
+                {
+                    tag = new Tags
+                    {
+                        Id = new Guid(),
+                        Value = tagString
+                    };
+
+                    _blogDbContext.Tags.Add( tag );
+                }
+
+                _blogDbContext.BlogPostTags.Add( new BlogPostTags
+                {
+                    BlogPost = blogPost,
+                    BlogPostId = blogPost.Id,
+                    Tag = tag,
+                    TagId = tag.Id
+                } );
+            }
 
             await _blogDbContext.SaveChangesAsync();
 

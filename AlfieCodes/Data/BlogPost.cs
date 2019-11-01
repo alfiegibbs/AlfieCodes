@@ -1,6 +1,7 @@
 ﻿namespace AlfieCodes.Data
 {
     using System;
+    using System.Collections.Generic;
 
     public class BlogPost
     {
@@ -9,8 +10,8 @@
         public string Title { get; set; }
         public string Body { get; set; }
         public string Summary { get; set; }
-        public string Tags { get; set; }
         public int ReadTime { get; set; }
         public string Image { get; set; }
+        public IList<BlogPostTags> BlogPostTags { get; set; } = new List<BlogPostTags>();
     }
 }

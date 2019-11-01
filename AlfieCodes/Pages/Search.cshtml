@@ -1,10 +1,19 @@
-﻿@page
+﻿@page "{query?}"
 @using AlfieCodes.Infastructure
 @using Humanizer
-@model IndexModel
+@model AlfieCodes.Pages.SearchModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Search";
 }
+
+<h1>Search</h1>
+
+<form>
+    <div class="md-form active-cyan-2 mb-3">
+        <input name="query" class="search form-control" type="text" placeholder="Search" aria-label="Search" value="@Model.Query">
+        <button asp-for="Query" type="submit" class="btn btn-success search-button" style="">Search!</button>
+    </div>
+</form>
 
 @foreach (var blogPost in Model.BlogPosts)
 {
@@ -20,16 +29,6 @@
     </a>
 }
 
-<div class="tag-cloud">
-    <div class="tagcloud03">
-        <ul>
-            @foreach ( var tag in Model.TagCloud )
-            {
-                <li><a href="#" >@tag.Name<span>@tag.Count</span></a></li>
-            }
-        </ul>
-    </div>
-</div>
 
 @{
     var prevDisabled = !Model.BlogPosts.HasPreviousPage ? "disabled" : "";
