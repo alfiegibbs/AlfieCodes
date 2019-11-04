@@ -53,6 +53,7 @@ namespace AlfieCodes
                                                options.Conventions.AllowAnonymousToPage( "/Register" );
                                                options.Conventions.AllowAnonymousToPage( "/Fail" );
                                                options.Conventions.AllowAnonymousToPage( "/Search" );
+                                               options.Conventions.AllowAnonymousToPage( "/Tags" );
                                            } ).SetCompatibilityVersion( CompatibilityVersion.Latest );
 
             services.AddHostedService<StartupActions>();

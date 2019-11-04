@@ -6,7 +6,13 @@
     ViewData["Title"] = "Tags";
 }
 
-<h1>Tags</h1>
+@if (Model.Tag == null) {
+    <h1>Tags</h1>
+}
+else 
+{
+    <h1>Tags about "@Model.Tag"</h1>
+}
 
 @foreach (var blogPost in Model.BlogPosts)
 {

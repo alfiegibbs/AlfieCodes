@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace AlfieCodes.Areas.Administration.Pages.Blog
 {
     using AlfieCodes.Data;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Query;
     using Microsoft.Extensions.Logging;
 
     public class IndexModel : PageModel
@@ -18,7 +20,8 @@ namespace AlfieCodes.Areas.Administration.Pages.Blog
 
         public IReadOnlyCollection<BlogPost> BlogPosts { get; private set; }
 
-        public IndexModel(BlogDbContext blogDbContext, ILogger<AlfieCodes.Pages.IndexModel> logger)
+
+        public IndexModel( BlogDbContext blogDbContext, ILogger<AlfieCodes.Pages.IndexModel> logger )
         {
             _blogDbContext = blogDbContext;
             _logger = logger;
@@ -26,10 +29,12 @@ namespace AlfieCodes.Areas.Administration.Pages.Blog
 
         public void OnGet()
         {
-            // Sticks newest blog post on top
-            var postList = _blogDbContext.BlogPosts.ToList();
-            postList.Reverse();
-            BlogPosts = postList;
+            var blogPost = _blogDbContext.BlogPosts
+                                         .Include( x => x.BlogPostTags )
+                                         .ThenInclude( x => x.Tag )
+                                         .OrderByDescending( x => x.CreatedAt );
+
+            BlogPosts = blogPost.ToList();
         }
     }
 }
