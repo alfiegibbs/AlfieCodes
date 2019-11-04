@@ -5,6 +5,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 * {
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
 a.navbar-brand {
