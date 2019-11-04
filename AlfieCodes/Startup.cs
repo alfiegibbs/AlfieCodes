@@ -35,13 +35,7 @@ namespace AlfieCodes
             services.AddAuthentication( CookieAuthenticationDefaults.AuthenticationScheme )
                     .AddCookie( options => options.LoginPath = "/Login" );
 
-            services.AddAuthorization( options =>
-                                       {
-                                           options.AddPolicy( "Admin", policy =>
-                                                                       {
-                                                                           policy.Requirements.Add( new RolesAuthorizationRequirement( new []{"Admin"} ) );
-                                                                       } );
-                                       } );
+            services.AddAuthorization( options => { options.AddPolicy( "Admin", policy => { policy.Requirements.Add( new RolesAuthorizationRequirement( new[] { "Admin" } ) ); } ); } );
 
             services.AddRazorPages()
                     .AddRazorPagesOptions( options =>
@@ -81,7 +75,6 @@ namespace AlfieCodes
                .UseRouting()
                .UseAuthentication()
                .UseAuthorization();
-
 
             app.UseEndpoints( endpoints => { endpoints.MapRazorPages(); } );
         }

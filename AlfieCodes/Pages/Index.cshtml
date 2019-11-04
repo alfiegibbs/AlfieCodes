@@ -13,16 +13,16 @@
 
 @foreach (var blogPost in Model.BlogPosts)
 {
-    <a class="card-title" asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString( "N" ))">
         <div class="blog-post">
             <a class="card-title" asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString( "N" ))"><h3>@blogPost.Title</h3></a>
-            <div class="card-text">@blogPost.ReadTime mins</div>
+            <div class="card-text"><i class="far fa-clock"></i> @blogPost.ReadTime mins</div>
             <img src="@blogPost.Image" class="card-img-top" alt="...">
             <div class="card-text"><i>@blogPost.Summary ...</i></div>
             <small>@blogPost.CreatedAt.Humanize()</small>
+            <br /><br />
+            <a asp-area="Posts" asp-route-title="@blogPost.Title.Slugify()" asp-route-postId="@(blogPost.Id.ToString("N"))" class="btn btn-primary">Read More</a>
         </div>
         <hr />
-    </a>
 }
 
 <div class="tag-cloud">
