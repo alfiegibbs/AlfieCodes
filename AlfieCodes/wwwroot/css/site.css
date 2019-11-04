@@ -54,6 +54,7 @@ html {
 }
 
 .box-shadow {
+    box-shadow: 0 .25rem .75rem #000000;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
@@ -92,16 +93,16 @@ body {
     text-align: center;
     color: white;
     border-radius: 5px;
-    border: 0px solid white;
+    border: 0 solid white;
 }
 
-    .box span {
-        font-size: 40px;
-    }
+.box span {
+    font-size: 40px;
+}
 
-    .box svg {
-        font-size: 60px;
-    }
+.box svg {
+    font-size: 60px;
+}
 
 table, th, td {
     padding: 5px;
@@ -128,7 +129,7 @@ table {
 code {
     display: inline-block;
     padding: 10px;
-    border: 0px solid black;
+    border: 0 solid black;
     border-radius: 5px;
     background-color: #253036;
 }
@@ -149,7 +150,7 @@ code {
     background-color: gainsboro;
     padding: 10px;
     margin: 0.5em;
-    border: 0px solid black;
+    border: 0 solid black;
     border-radius: 5px;
 }
 
@@ -158,9 +159,9 @@ code {
     text-align: center;
 }
 
-    .comment-container textarea {
-        width: 54vw;
-    }
+.comment-container textarea {
+    width: 54vw;
+}
 
 .comment {
     margin: 20px;
@@ -169,7 +170,6 @@ code {
 
 .blog-post {
     margin: 80px;
-    max-width: 30vw;
 }
 
 .blog-post img, .card-text {
@@ -305,20 +305,20 @@ hr {
     text-align: center;
 }
 
-    .header img {
-        object-fit: cover;
-        width: 100%;
-        height: 400px;
-    }
+.header img {
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+}
 
-    .header h1 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-weight: 700;
-        color: white;
-    }
+.header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    color: white;
+}
 
 @media only screen and (max-width: 768px) {
     .header {
@@ -330,7 +330,7 @@ hr {
     }
 
     .blog-post {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .blog-post, .blog-post img, hr, h3, .card-text {

@@ -22,7 +22,6 @@
     Layout = "Shared/_Layout";
     ViewData[ "Title" ] = @Model.BlogPost.Title;
 
-    //    string[] tags = @Model.BlogPost.Tags?.Split(", ");
     var options = new MarkdownOptions
     {
         AutoHyperlink = true,
@@ -44,14 +43,14 @@
     <hr />
     <small>@Model.BlogPost.CreatedAt.Humanize()</small>
 
-    <div class="tagCloud" style="display: inline; padding-top: 50px;">
+    <div class="tagCloud" style="display: inline; padding-top: 50px;" >
         <br />
-        @if (Model.Tags != null)
+        @if ( Model.Tags != null )
         {
-            @foreach (var tag in Model.Tags)
+            @foreach ( var tag in Model.Tags )
             {
-                <a asp-page="/Tags" asp-route-tag="@tag.Value">
-                    <span class="tag">
+                <a asp-page="/Tags" asp-route-tag="@tag.Value" >
+                    <span class="tag" >
                         @tag.Value
                     </span>
                 </a>
