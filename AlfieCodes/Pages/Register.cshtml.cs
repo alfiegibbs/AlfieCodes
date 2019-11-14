@@ -26,8 +26,8 @@
 
         private string HashPassword( string password )
         {
-            var encryptedPassword = BCrypt.HashPassword( password );
-            return encryptedPassword;
+            var hashedPassword = BCrypt.HashPassword( password );
+            return hashedPassword;
         }
 
         public async Task<IActionResult> OnPostAsync()

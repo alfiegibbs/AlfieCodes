@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace AlfieCodes.Pages
+﻿namespace AlfieCodes.Pages
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using System.Security.Claims;
     using AlfieCodes.Data;
     using AlfieCodes.Models;
     using BCrypt.Net;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.Cookies;
-    using Microsoft.AspNetCore.Http;
 
     public class LoginModel : PageModel
     {
@@ -36,9 +33,9 @@ namespace AlfieCodes.Pages
                 return Redirect( "/Fail" );;
             }
 
-            bool encryptedPassword = BCrypt.Verify( LoginRequest.Password, user.Password );
+            bool hashedPassword = BCrypt.Verify( LoginRequest.Password, user.Password );
 
-            if ( !encryptedPassword )
+            if ( !hashedPassword )
             {
                 return Redirect( "/Fail" );
             }

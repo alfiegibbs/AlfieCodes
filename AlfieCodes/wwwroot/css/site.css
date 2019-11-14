@@ -95,6 +95,7 @@ body {
     background-color: #404040;
     text-align: center;
     color: white;
+    -ms-border-radius: 5px;
     border-radius: 5px;
     border: 0 solid white;
 }
@@ -133,6 +134,7 @@ code {
     display: inline-block;
     padding: 10px;
     border: 0 solid black;
+    -ms-border-radius: 5px;
     border-radius: 5px;
     background-color: #253036;
 }
@@ -154,6 +156,7 @@ code {
     padding: 10px;
     margin: 0.5em;
     border: 0 solid black;
+    -ms-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -263,6 +266,7 @@ hr {
     padding: 0 2.5em 0 1em;
     background-color: #fff;
     border: 1px solid #aaa;
+    -ms-border-radius: 3px;
     border-radius: 3px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -271,6 +275,8 @@ hr {
     font-size: 13px;
     text-decoration: none;
     -webkit-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
     transition: .2s;
 }
 
@@ -283,11 +289,14 @@ hr {
     height: 22px;
     line-height: 22px;
     background-color: #3498db;
+    -ms-border-radius: 100%;
     border-radius: 100%;
     color: #fff;
     font-size: 12px;
     text-align: center;
     -webkit-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
     transition: .2s;
 }
 
@@ -309,6 +318,9 @@ hr {
 }
 
 .header img {
+    position: relative;
+    z-index: -1;
+    -webkit-object-fit: cover;
     object-fit: cover;
     width: 100%;
     height: 400px;
@@ -318,6 +330,8 @@ hr {
     position: absolute;
     top: 50%;
     left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-weight: 700;
     color: white;
